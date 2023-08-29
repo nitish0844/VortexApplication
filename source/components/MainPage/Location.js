@@ -92,8 +92,6 @@ const Location = () => {
   };
   const GOOGLE_MAPS_APIKEY = 'AIzaSyBDDOr5YH_yg0l3PBdFT4aC33khrAsW_j8';
 
-  console.log(region);
-
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
