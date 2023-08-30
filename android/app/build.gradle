@@ -210,7 +210,7 @@ dependencies {
     implementation project(':react-native-firebase_messaging')
     implementation project(':react-native-push-notification')
     implementation project(':react-native-community-geolocation')
-     implementation project(':react-native-permissions')
+
     
 
     // compile project(':react-native-maps')
