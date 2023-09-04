@@ -11,6 +11,8 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Feather from 'react-native-vector-icons/Feather.js';
 import Location from './source/components/MainPage/Location';
+import Login from './source/screens/Login/Login';
+import EnterOtp from './source/screens/Login/EnterOtp';
 
 // Redux
 import {Provider} from 'react-redux';
@@ -135,12 +137,13 @@ const App = () => {
 
       configurePushNotification();
     }, []);
+
     // const MainStack = () => {
     //   return (
     //     <Stack.Navigator
-    //       initialRouteName="Sliding"
+    //       // initialRouteName="Sliding"
     //       screenOptions={{headerShown: false}}>
-    //       {/* <Stack.Screen name="MainPage" component={MainPage} /> */}
+    //       <Stack.Screen name="Login" component={Login} />
     //     </Stack.Navigator>
     //   );
     // };
@@ -241,6 +244,16 @@ const App = () => {
           component={}
           options={{headerShown: false}}
         /> */}
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="EnterOtp"
+          component={EnterOtp}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="BottomTabs"
           component={BottomTabs}

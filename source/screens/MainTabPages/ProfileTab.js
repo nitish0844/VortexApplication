@@ -15,6 +15,7 @@ import ProfileMap from '../../components/Profile/ProfileMap';
 const ProfileTab = () => {
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar backgroundColor="#000" barStyle="light-content" />
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <ProfileHeader />
         <ProfileImage />

@@ -30,7 +30,9 @@ const QrCodeScanner = () => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.IconContainer}>
+      <TouchableOpacity
+        style={styles.IconContainer}
+        onPress={() => Navigation.navigate('Login')}>
         <MaterialCommunityIcons name="qrcode-scan" color={'#fff'} size={26} />
       </TouchableOpacity>
       {/* <TouchableOpacity

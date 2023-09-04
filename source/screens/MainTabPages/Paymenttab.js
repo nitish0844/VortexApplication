@@ -1,4 +1,11 @@
-import {View, Text, ScrollView, StyleSheet, SafeAreaView} from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  SafeAreaView,
+  StatusBar,
+} from 'react-native';
 import React from 'react';
 import PaymentHeader from '../../components/Payment/PaymentHeader';
 import Payment from '../../components/Payment/Payment';
@@ -7,6 +14,7 @@ import PaymentHistory from '../../components/Payment/PaymentHistory';
 const Paymenttab = () => {
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar backgroundColor="#000" barStyle="light-content" />
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <PaymentHeader />
         <Payment />

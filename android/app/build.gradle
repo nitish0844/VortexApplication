@@ -210,6 +210,12 @@ dependencies {
     implementation project(':react-native-firebase_messaging')
     implementation project(':react-native-push-notification')
     implementation project(':react-native-community-geolocation')
+    implementation(platform("com.google.firebase:firebase-bom:32.2.3"))
+    implementation 'com.google.firebase:firebase-auth'
+    
+
+    // Add this line
+    // implementation "androidx.browser:browser:1.2.0"
 
     
 

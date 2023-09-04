@@ -26,7 +26,12 @@ const ProfileMap = ({}) => {
         <Ionicons name="expand-outline" size={22} />
       </TouchableOpacity>
       <View style={styles.mapContainer}>
-        <MapView style={styles.map} initialRegion={markerCoordinate}>
+        <MapView
+          style={styles.map}
+          initialRegion={markerCoordinate}
+          scrollEnabled={false} // Disable map scrolling
+          zoomEnabled={false} // Disable map zooming
+        >
           <Marker
             coordinate={markerCoordinate}
             title="Tiger gym"

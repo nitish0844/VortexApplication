@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "263759663560-juoptgpg7l6ckqqn9lq5h3lcl0jnp8en.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vortexfitness",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
           "client_id": "263759663560-26s5oggepamk6l9m6qvth7e81tda7g34.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -50,6 +58,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "263759663560-f49nvkf3gm819cgdcjfm54hgj8lnar5p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vortexfitnessadmin",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
         {
           "client_id": "263759663560-26s5oggepamk6l9m6qvth7e81tda7g34.apps.googleusercontent.com",
           "client_type": 3
