@@ -1,7 +1,16 @@
-import {View, Text, SafeAreaView, ScrollView, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  StatusBar,
+} from 'react-native';
 import React from 'react';
 import ProfileHeader from '../../components/Profile/ProfileHeader';
 import ProfileImage from '../../components/Profile/ProfileImage';
+import ProfileSettings from './../../components/Profile/ProfileSettings';
+import ProfileMap from '../../components/Profile/ProfileMap';
 
 const ProfileTab = () => {
   return (
@@ -9,6 +18,8 @@ const ProfileTab = () => {
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <ProfileHeader />
         <ProfileImage />
+        <ProfileSettings />
+        <ProfileMap />
       </ScrollView>
     </SafeAreaView>
   );

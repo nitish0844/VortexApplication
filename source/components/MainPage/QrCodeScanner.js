@@ -33,11 +33,11 @@ const QrCodeScanner = () => {
       <TouchableOpacity style={styles.IconContainer}>
         <MaterialCommunityIcons name="qrcode-scan" color={'#fff'} size={26} />
       </TouchableOpacity>
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={styles.IconContainer}
         onPress={() => Navigation.navigate('Location')}>
         <MaterialIcons name="location-on" color={'#fff'} size={29} />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
       {/* {scannerVisible && (
         <View style={styles.scannerContainer}>
