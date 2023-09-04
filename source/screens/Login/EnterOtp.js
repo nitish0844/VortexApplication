@@ -12,11 +12,13 @@ import {
   StatusBar,
   KeyboardAvoidingView,
   Platform,
+  ActivityIndicator,
 } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import {useNavigation} from '@react-navigation/native';
 import messaging from '@react-native-firebase/messaging';
 import firestore from '@react-native-firebase/firestore';
+// import LottieView from 'lottie-react-native';
 
 const EnterOtp = ({route}) => {
   const {verificationId} = route.params;
@@ -24,6 +26,7 @@ const EnterOtp = ({route}) => {
   const inputRefs = useRef([]);
   const autoSubmitRef = useRef(null);
   const navigation = useNavigation();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     // Check if all OTP fields are filled, then auto-submit
@@ -34,7 +37,31 @@ const EnterOtp = ({route}) => {
     }
   }, [otp]);
 
+  // useEffect(() => {
+  //   // Get the FCM token when the component mounts
+  //   getFCMToken();
+  // }, []);
+
+  const getFCMToken = async () => {
+    try {
+      const token = await messaging().getToken();
+      console.log('FCM Token:', token);
+
+      // Store the token in Firebase (replace 'users' with your collection name)
+      const user = auth().currentUser;
+      if (user) {
+        await firestore()
+          .collection('users')
+          .doc(user.uid)
+          .set({fcmToken: token}, {merge: true}); // Use set with merge true to update or create the document
+      }
+    } catch (error) {
+      console.error('Failed to get FCM token:', error);
+    }
+  };
+
   const handleVerifyOtp = async () => {
+    setIsLoading(true);
     try {
       // Concatenate the elements of the otp array into a single string
       const otpString = otp.join('');
@@ -48,11 +75,14 @@ const EnterOtp = ({route}) => {
       await auth().signInWithCredential(credential);
 
       // If successful, navigate to the next screen
+      getFCMToken();
       alert('Successfully logged in!');
       navigation.replace('BottomTabs');
     } catch (error) {
       console.error(error);
       alert('Failed to log in. Please check the OTP or verify reCAPTCHA.');
+    } finally {
+      setIsLoading(false); // Hide loader when the process completes
     }
   };
 
@@ -123,13 +153,17 @@ const EnterOtp = ({route}) => {
           />
         ))}
       </View>
+
       <TouchableOpacity
         style={[styles.submitButton, {width: '80%'}]}
         onPress={handleVerifyOtp}
-        disabled={otp.some(digit => digit === '')}>
-        <Text style={styles.submitButtonText}>Verify</Text>
+        disabled={otp.some(digit => digit === '') || isLoading}>
+        {isLoading ? (
+          <ActivityIndicator size="small" color="#fff" />
+        ) : (
+          <Text style={styles.submitButtonText}>Verify</Text>
+        )}
       </TouchableOpacity>
-      {/* </View> */}
     </ScrollView>
   );
 };
@@ -250,6 +284,17 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     fontSize: 16,
     textAlign: 'center',
+  },
+  loaderContainer: {
+    position: 'absolute',
+    top: '0%',
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+  },
+  loader: {
+    width: 100,
+    height: 100,
   },
 });
 

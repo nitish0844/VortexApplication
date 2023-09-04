@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {
   View,
   Text,
@@ -11,12 +11,23 @@ import HeadText from './../../components/MainPage/HeadText';
 import QrCodeScanner from '../../components/MainPage/QrCodeScanner';
 import AttendenceStats from '../../components/MainPage/AttendenceStats';
 import NutrientFood from '../../components/MainPage/NutrientFood';
+import {useFocusEffect} from '@react-navigation/native';
 
 const MainPage = () => {
+  const scrollViewRef = useRef(null);
+
+  useFocusEffect(() => {
+    // Check if scrollViewRef is not null before scrolling
+    if (scrollViewRef.current) {
+      scrollViewRef.current.scrollTo({x: 0, y: 0, animated: false});
+    }
+  });
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor="#000" barStyle="light-content" />
-      <ScrollView contentContainerStyle={styles.scrollContent}>
+      <ScrollView
+        ref={scrollViewRef}
+        contentContainerStyle={styles.scrollContent}>
         <HeadText />
         <QrCodeScanner />
         <AttendenceStats />

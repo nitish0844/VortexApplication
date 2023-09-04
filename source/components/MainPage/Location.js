@@ -27,6 +27,16 @@ const Location = () => {
   useEffect(() => {
     // Request location permission
     requestLocationPermission();
+
+    // Refresh location every 2 seconds
+    const locationInterval = setInterval(() => {
+      requestLocationPermission();
+    }, 2000);
+
+    // Clean up interval when component unmounts
+    return () => {
+      clearInterval(locationInterval);
+    };
   }, []);
 
   const requestLocationPermission = async () => {

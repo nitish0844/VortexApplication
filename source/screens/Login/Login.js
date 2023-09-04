@@ -50,7 +50,7 @@ const Login = () => {
               style={styles.input}
               placeholder="Enter Phone Number"
               placeholderTextColor="grey"
-              keyboardType="phone-pad"
+              keyboardType="numeric"
               onChangeText={text => setMobileNumber(text)}
             />
           </View>

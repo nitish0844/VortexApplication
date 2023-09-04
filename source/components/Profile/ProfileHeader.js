@@ -4,9 +4,21 @@ import Octicons from 'react-native-vector-icons/Octicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons.js';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import {useNavigation} from '@react-navigation/native';
+import auth from '@react-native-firebase/auth';
 
 const ProfileHeader = () => {
   const navigation = useNavigation();
+
+  const handleLogout = async () => {
+    try {
+      await auth().signOut(); // Sign out the user
+      navigation.replace('MainStack');
+      // You can add additional actions after logout if needed
+    } catch (error) {
+      console.error('Logout Error:', error);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.TitleContainer}>
@@ -23,7 +35,9 @@ const ProfileHeader = () => {
           }}>
           <Text style={styles.title}>Profile</Text>
         </View>
-        <TouchableOpacity style={styles.IconContainer}>
+        <TouchableOpacity
+          style={styles.IconContainer}
+          onPress={() => handleLogout()}>
           <Text style={styles.LogutText}>Logout</Text>
         </TouchableOpacity>
       </View>

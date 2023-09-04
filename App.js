@@ -138,15 +138,16 @@ const App = () => {
       configurePushNotification();
     }, []);
 
-    // const MainStack = () => {
-    //   return (
-    //     <Stack.Navigator
-    //       // initialRouteName="Sliding"
-    //       screenOptions={{headerShown: false}}>
-    //       <Stack.Screen name="Login" component={Login} />
-    //     </Stack.Navigator>
-    //   );
-    // };
+    const MainStack = () => {
+      return (
+        <Stack.Navigator
+          // initialRouteName="Sliding"
+          screenOptions={{headerShown: false}}>
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="EnterOtp" component={EnterOtp} />
+        </Stack.Navigator>
+      );
+    };
 
     const BottomTabs = () => {
       return (
@@ -239,19 +240,9 @@ const App = () => {
     };
     return (
       <Stack.Navigator>
-        {/* <Stack.Screen
+        <Stack.Screen
           name="MainStack"
-          component={}
-          options={{headerShown: false}}
-        /> */}
-        <Stack.Screen
-          name="Login"
-          component={Login}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="EnterOtp"
-          component={EnterOtp}
+          component={MainStack}
           options={{headerShown: false}}
         />
         <Stack.Screen
