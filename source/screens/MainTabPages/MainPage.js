@@ -27,6 +27,7 @@ const MainPage = () => {
       <StatusBar backgroundColor="#000" barStyle="light-content" />
       <ScrollView
         ref={scrollViewRef}
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}>
         <HeadText />
         <QrCodeScanner />

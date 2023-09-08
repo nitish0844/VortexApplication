@@ -8,10 +8,7 @@ import {
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
-import {useDispatch, useSelector} from 'react-redux';
-// import {setPaymentStatus} from '../Redux/Store/Actions/PaymentAction';
-
-import useApi from '../api/Api';
+// import useApi from '../api/Api';
 
 // const data = [
 //   {
@@ -20,70 +17,68 @@ import useApi from '../api/Api';
 // ];
 
 const Payment = () => {
-  // const [paymentStatus, setPaymentStatus] = useState(false);
+  const [paymentStatus, setPaymentStatus] = useState(false);
   // const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
-  const paymentStatus = useSelector(state => state.paymentStatus);
+  // const paymentStatus = useSelector(state => state.paymentStatus);
 
   // const paymentStatus = useSelector(state => state.payment.paymentStatus);
-  const {fetchPaymentStatus, makePayment} = useApi();
+  // const {fetchPaymentStatus, makePayment} = useApi();
 
-  useEffect(() => {
-    fetchPaymentStatus();
-  }, []);
+  // useEffect(() => {
+  //   fetchPaymentStatus();
+  // }, []);
 
   console.log(paymentStatus);
 
-  // const fetchSubscriptionStatus = async () => {
-  //   try {
-  //     const response = await fetch(
-  //       'https://gautham-courses.web.app/api/subscription',
-  //     );
+  const fetchSubscriptionStatus = async () => {
+    try {
+      const response = await fetch('http://192.168.145.220:3000/subscription');
 
-  //     if (response.status === 200) {
-  //       const responseData = await response.json();
-  //       const subscriptionStatus = responseData.paid;
-  //       setPaymentStatus(subscriptionStatus);
-  //       setLoading(false);
-  //       console.log(subscriptionStatus);
-  //     } else {
-  //       console.log('Failed to fetch subscription data');
-  //     }
-  //   } catch (error) {
-  //     console.error('Error fetching subscription data:', error);
-  //   }
-  // };
+      if (response.status === 200) {
+        const responseData = await response.json();
+        const subscriptionStatus = responseData.paid;
+        setPaymentStatus(subscriptionStatus);
+        setLoading(false);
+        console.log(subscriptionStatus);
+      } else {
+        console.log('Failed to fetch subscription data');
+      }
+    } catch (error) {
+      console.error('Error fetching subscription data:', error);
+    }
+  };
 
-  // useEffect(() => {
-  //   fetchSubscriptionStatus();
-  // }, []); // Fetch subscription status when the component mounts
+  useEffect(() => {
+    fetchSubscriptionStatus();
+  }, []); // Fetch subscription status when the component mounts
 
-  // const handlePayment = async () => {
-  //   try {
-  //     const response = await fetch('http://192.168.76.220:3000/payment', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         'x-razorpay-signature':
-  //           'ea0bb784910e392582ed9e2146cf9ab9045756a6a24b5790edbc135ac09a9bc4',
-  //       },
-  //       body: JSON.stringify({
-  //         status: 'success',
-  //         amount: 600,
-  //         paymentId: 'payment123',
-  //       }),
-  //     });
+  const handlePayment = async () => {
+    try {
+      const response = await fetch('http://192.168.145.220:3000/payment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-razorpay-signature':
+            'ea0bb784910e392582ed9e2146cf9ab9045756a6a24b5790edbc135ac09a9bc4',
+        },
+        body: JSON.stringify({
+          status: 'success',
+          amount: 600,
+          paymentId: 'payment123',
+        }),
+      });
 
-  //     if (response.status === 200) {
-  //       console.log('Payment data sent to backend successfully');
-  //       setPaymentStatus(true); // Update payment status in UI
-  //     } else {
-  //       console.log('Failed to send payment data to backend');
-  //     }
-  //   } catch (error) {
-  //     console.error('Error sending payment data:', error);
-  //   }
-  // };
+      if (response.status === 200) {
+        console.log('Payment data sent to backend successfully');
+        setPaymentStatus(true); // Update payment status in UI
+      } else {
+        console.log('Failed to send payment data to backend');
+      }
+    } catch (error) {
+      console.error('Error sending payment data:', error);
+    }
+  };
 
   // const handlePayment = () => {
   //   // Simulating payment success
@@ -102,7 +97,7 @@ const Payment = () => {
           {backgroundColor: paymentStatus === true ? 'green' : '#FFA500'},
         ]}
         disabled={paymentStatus === true}
-        onPress={makePayment}>
+        onPress={handlePayment}>
         {loading ? (
           <ActivityIndicator color="#fff" /> // Show loader when loading
         ) : (

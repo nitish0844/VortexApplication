@@ -27,6 +27,7 @@ const AttendenceTab = () => {
       <StatusBar backgroundColor="#000" barStyle="light-content" />
       <ScrollView
         ref={scrollViewRef}
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}>
         <Header />
         <Calender />

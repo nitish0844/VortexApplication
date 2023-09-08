@@ -2,21 +2,40 @@ import axios from 'axios';
 import {useDispatch} from 'react-redux';
 import {setPaymentStatus} from '../Redux/Store/Actions/PaymentAction';
 
-const BASE_URL = 'http://192.168.76.220:3000';
+const BASE_URL = '192.168.145.220:3000';
 
 const useApi = () => {
   const dispatch = useDispatch();
 
+  // const fetchPaymentStatus = async () => {
+  //   try {
+  //     console.log('Fetching payment status...');
+  //     const response = await axios.get(`${BASE_URL}/subscription`);
+  //     if (response.status === 200) {
+  //       const subscriptionStatus = response.data.paid;
+  //       // console.log('Fetched payment status:', subscriptionStatus);
+  //       dispatch(setPaymentStatus(subscriptionStatus));
+  //       // console.log('Payment status dispatched.');
+  //       return;
+  //     }
+  //   } catch (error) {
+  //     console.error('Error fetching payment status:', error);
+  //   }
+  // };
+
   const fetchPaymentStatus = async () => {
     try {
       console.log('Fetching payment status...');
-      const response = await axios.get(`${BASE_URL}/subscription`);
+      const response = await fetch(`${BASE_URL}/subscription`);
+
       if (response.status === 200) {
-        const subscriptionStatus = response.data.paid;
-        // console.log('Fetched payment status:', subscriptionStatus);
+        const data = await response.json();
+        const subscriptionStatus = data.paid;
         dispatch(setPaymentStatus(subscriptionStatus));
-        // console.log('Payment status dispatched.');
+        console.log('Payment status dispatched.');
         return;
+      } else {
+        throw new Error('Failed to fetch data');
       }
     } catch (error) {
       console.error('Error fetching payment status:', error);
