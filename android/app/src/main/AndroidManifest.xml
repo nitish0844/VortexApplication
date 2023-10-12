@@ -28,11 +28,10 @@
         </intent-filter>
       </activity>
 
-      <!-- <meta-data android:name="com.google.android.maps.v2.API_KEY"
-       android:value="AIzaSyBOmW3GyaGjsgMMPM-NlsTIUpRcoFes8Wo" /> -->
+      
 
        <meta-data android:name="com.google.android.geo.API_KEY" 
-        android:value="AIzaSyBDDOr5YH_yg0l3PBdFT4aC33khrAsW_j8"/>
+        android:value="xxxxxxxxxxxxx"/>
 
         <uses-library android:name="org.apache.http.legacy" android:required="false"/>
 
