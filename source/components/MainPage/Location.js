@@ -100,7 +100,7 @@ const Location = () => {
     latitude: 10.749862368914718,
     longitude: 78.82246191443075,
   };
-  const GOOGLE_MAPS_APIKEY = 'AIzaSyBDDOr5YH_yg0l3PBdFT4aC33khrAsW_j8';
+  const GOOGLE_MAPS_APIKEY = 'XXXXXXXXXXXXXXXXXXX';
 
   return (
     <View style={styles.container}>
